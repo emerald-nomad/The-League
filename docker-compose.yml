@@ -1,5 +1,6 @@
 version: "3.6"
 services:
+  # API
   api:
     build: ./
     volumes:
@@ -15,18 +16,6 @@ services:
       MONGO_URI: mongodb://mongo:27017
       REDIS_URI: redis://redis:6379
       JWT_SECRET: SuperSecret!
-  # # PostgreSQL
-  # postgres:
-  #   container_name: postgres
-  #   build: ./postgres
-  #   environment:
-  #     POSTGRES_USER: admin
-  #     POSTGRES_PASSWORD: password
-  #     POSTGRES_URL: postgres://admin:password@localhost:5432/smart-brain
-  #     POSTGRES_DB: smart-brain
-  #     POSTGRES_HOST: postgres
-  #   ports:
-  #     - "5432:5432"
 
   # Mongo
   mongo:
@@ -40,20 +29,3 @@ services:
     image: redis
     ports:
       - "6379:6379"
-  # Backend
-  # smart-brain-api:
-  #   # env_file:
-  #   #   - ./.private/api-keys.env "Another way to insert env variables"
-  #   container_name: backend
-  #   build: ./
-  #   volumes:
-  #     - ./:/usr/src/smart-brain-api
-  #   command: npm start
-  #   working_dir: /usr/src/smart-brain-api
-  #   ports:
-  #     - "3000:3000"
-  #   environment:
-  #     POSTGRES_URI: postgres://admin:password@postgres:5432/smart-brain
-  #     REDIS_URI: redis://redis:6379
-  #     CLARIFAI_API_KEY: 73d6ca0127cd4149ade07bef75deb97b
-  #     JWT_SECRET: SuperSecret!
