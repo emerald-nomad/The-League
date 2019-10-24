@@ -27,3 +27,12 @@ export const createSession = async ({
     throw Error("Error trying to create session");
   }
 };
+
+export const destroySession = async (key: string): Promise<void> => {
+  try {
+    await redisClient.delAsync(key);
+  } catch (error) {
+    console.log(error);
+    throw Error("Error tyring to delete session");
+  }
+};

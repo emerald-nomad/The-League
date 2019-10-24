@@ -1,11 +1,12 @@
 import { Router, Request, Response } from "express";
 import { hash, compare } from "bcryptjs";
+import { validationResult } from "express-validator";
 
 import { registerValidation, loginValidation } from "./auth.validation";
-import { validationResult } from "express-validator";
-import User from "../../models/User";
+import { createSession, AuthUser, destroySession } from "./auth.utils";
+import { privateRoute } from "../controllers.utils";
 
-import { createSession, AuthUser } from "./auth.utils";
+import User from "../../models/User";
 
 const router = Router();
 
@@ -87,5 +88,16 @@ router.post("/login", loginValidation, async (req: Request, res: Response) => {
 
     res.status(400).send("Error encountered while trying to login user");
   }
+});
+
+// @route   POST /api/auth/logout
+// @desc    Logout user
+// access   Public
+router.post("/logout", privateRoute, async (req: Request, res: Response) => {
+  const { token } = req.body;
+
+  await destroySession(token);
+
+  res.status(200).json({ token: null, user: null });
 });
 export default router;
