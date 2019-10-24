@@ -9,8 +9,6 @@ export const registerValidation = checkSchema({
     normalizeEmail: true,
     custom: {
       options: async value => {
-        // Uncomment next line to return an error
-        // throw new Error("Email is already in use!");
         const user = await User.findOne({ email: value });
 
         if (user) throw new Error("Email is already in use!");
@@ -44,5 +42,15 @@ export const registerValidation = checkSchema({
         return true;
       }
     }
+  }
+});
+
+export const loginValidation = checkSchema({
+  email: {
+    isEmail: true,
+    normalizeEmail: true
+  },
+  password: {
+    exists: true
   }
 });
