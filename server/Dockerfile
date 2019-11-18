@@ -1,4 +1,4 @@
-FROM node:8.11.1
+FROM node:10.15.1
 
 WORKDIR /usr/src/api
 
