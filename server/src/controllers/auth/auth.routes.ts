@@ -10,7 +10,7 @@ import User from "../../models/User";
 
 const router = Router();
 
-// @route   GET /api/auth/register
+// @route   POST /api/auth/register
 // @desc    Register new user
 // access   Public
 router.post(
@@ -48,7 +48,7 @@ router.post(
   }
 );
 
-// @route   GET /api/auth/login
+// @route   POST /api/auth/login
 // @desc    Login user
 // access   Public
 router.post("/login", loginValidation, async (req: Request, res: Response) => {

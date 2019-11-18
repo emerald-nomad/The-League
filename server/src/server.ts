@@ -2,7 +2,7 @@ import * as express from "express";
 import * as mongoose from "mongoose";
 import * as bodyParser from "body-parser";
 
-import { test, auth } from "./controllers";
+import { test, auth, league } from "./controllers";
 
 async function main() {
   try {
@@ -23,6 +23,7 @@ async function main() {
 
   app.use("/api/test", test);
   app.use("/api/auth", auth);
+  app.use("/api/league", league);
 
   const port = process.env.PORT || 4000;
 
